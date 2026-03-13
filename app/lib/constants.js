@@ -1,11 +1,11 @@
 const envConfig = {
     emailjs: {
-        serviceId: process.env.NEXT_PRIVATE_EMAILJS_SERVICE_ID,
-        templateId: process.env.NEXT_PRIVATE_EMAILJS_TEMPLATE_ID,
-        userId: process.env.NEXT_PRIVATE_EMAILJS_USER_ID,
+        serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        userId: process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
     },
     googleAnalyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
-    logrocketId: process.env.NEXT_PRIVATE_LOGROCKET_ID,
+    logrocketId: process.env.NEXT_PUBLIC_LOGROCKET_ID,
 };
 
 const asset_base_url = "https://dp-assets.tor1.digitaloceanspaces.com";

@@ -24,7 +24,9 @@ export function Analytics() {
   const pathname = usePathname();
 
   useEffect(() => {
-    LogRocket.init(envConfig.logrocketId);
+    if (envConfig.logrocketId) {
+      LogRocket.init(envConfig.logrocketId);
+    }
   }, []);
 
   useEffect(() => {
