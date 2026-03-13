@@ -4,17 +4,17 @@ import { Navigation } from '@/components/Navigation';
 describe('Navigation', () => {
   it('renders the logo with correct alt text', () => {
     render(<Navigation />);
-    expect(screen.getByAltText('Boxing Octopus')).toBeInTheDocument();
+    expect(screen.getByAltText("Dragon's Purr Crafts and Sundry")).toBeInTheDocument();
   });
 
   it('renders navigation links', () => {
     render(<Navigation />);
     expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /projects/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /collective/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /brands/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /portfolio/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /contact/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /shop/i })).toBeInTheDocument();
   });
 
   it('links to correct internal paths', () => {
@@ -22,13 +22,14 @@ describe('Navigation', () => {
     expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute('href', '/about');
     expect(screen.getByRole('link', { name: /contact/i })).toHaveAttribute('href', '/contact');
+    expect(screen.getByRole('link', { name: /shop/i })).toHaveAttribute('href', 'https://shop.dragonspurr.ca');
   });
 
-  it('Github link opens in new tab', () => {
+  it('Shop link opens in new tab', () => {
     render(<Navigation />);
-    const githubLink = screen.getByRole('link', { name: /github/i });
-    expect(githubLink).toHaveAttribute('href', 'https://github.com/boxingoctopus');
-    expect(githubLink).toHaveAttribute('target', '_blank');
-    expect(githubLink).toHaveAttribute('rel', 'noreferrer');
+    const shopLink = screen.getByRole('link', { name: /shop/i });
+    expect(shopLink).toHaveAttribute('href', 'https://shop.dragonspurr.ca');
+    expect(shopLink).toHaveAttribute('target', '_blank');
+    expect(shopLink).toHaveAttribute('rel', 'noreferrer');
   });
 });

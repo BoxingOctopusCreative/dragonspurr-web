@@ -3,12 +3,12 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import Home from '@/app/page';
 import About from '@/app/about/page';
-import Projects from '@/app/brands/page';
-import Collective from '@/app/portfolio/page';
+import Brands from '@/app/brands/page';
+import Portfolio from '@/app/portfolio/page';
 import Contact from '@/app/contact/page';
 import NotFound from '@/app/not-found';
 
-const VALID_INTERNAL_PATHS = ['/', '/about', '/projects', '/collective', '/contact'];
+const VALID_INTERNAL_PATHS = ['/', '/about', '/brands', '/portfolio', '/contact'];
 
 function getAllLinks(container) {
   return Array.from(container.querySelectorAll('a[href]'));
@@ -43,10 +43,10 @@ describe('All links have valid hrefs', () => {
     });
   });
 
-  it('Projects page project links have valid hrefs', () => {
-    const { container } = render(<Projects />);
+  it('Brands page brand links have valid hrefs', () => {
+    const { container } = render(<Brands />);
     const hrefs = getLinkHrefs(container);
-    expect(hrefs.length).toBe(4);
+    expect(hrefs.length).toBe(2);
     hrefs.forEach((href) => {
       expect(href).toBeTruthy();
       expect(href).toMatch(/^https?:\/\//);
@@ -75,8 +75,8 @@ describe('All links have valid hrefs', () => {
     expect(links.length).toBe(0);
   });
 
-  it('Collective page has no links in content', () => {
-    const { container } = render(<Collective />);
+  it('Portfolio page has no links in content', () => {
+    const { container } = render(<Portfolio />);
     const links = getAllLinks(container);
     expect(links.length).toBe(0);
   });
@@ -94,34 +94,32 @@ describe('All expected links are present and resolve to correct targets', () => 
     const hrefs = getLinkHrefs(container);
     expect(hrefs).toContain('/');
     expect(hrefs).toContain('/about');
-    expect(hrefs).toContain('/projects');
-    expect(hrefs).toContain('/collective');
+    expect(hrefs).toContain('/brands');
+    expect(hrefs).toContain('/portfolio');
     expect(hrefs).toContain('/contact');
-    expect(hrefs).toContain('https://github.com/boxingoctopus');
+    expect(hrefs).toContain('https://shop.dragonspurr.ca');
   });
 
   it('Footer contains expected external links', () => {
     const { container } = render(<Footer />);
     const hrefs = getLinkHrefs(container);
-    expect(hrefs.filter((h) => h === 'https://boxingoctop.us').length).toBe(2);
+    expect(hrefs.filter((h) => h === 'https://dragonspurr.ca').length).toBe(2);
     expect(hrefs).toContain('https://nextjs.org');
     expect(hrefs).toContain('https://tailwindcss.com');
   });
 
-  it('Projects page links resolve to expected project URLs', () => {
-    const { container } = render(<Projects />);
+  it('Brands page links resolve to expected brand URLs', () => {
+    const { container } = render(<Brands />);
     const hrefs = getLinkHrefs(container);
-    expect(hrefs).toContain('https://ryandraga.me');
-    expect(hrefs).toContain('https://mylifeinmusic.me');
+    expect(hrefs).toContain('https://dragonspurr.ca');
     expect(hrefs).toContain('https://hipsterdonut.myspreadshop.ca');
-    expect(hrefs).toContain('https://chainsinventinsanity.com');
   });
 
   it('Contact page social links resolve to expected URLs', () => {
     const { container } = render(<Contact />);
     const hrefs = getLinkHrefs(container);
-    expect(hrefs).toContain('https://bsky.app/profile/boxingoctopus.social');
-    expect(hrefs).toContain('https://www.linkedin.com/in/ryandraga');
-    expect(hrefs).toContain('https://hey.cafe/@boxingoctopus');
+    expect(hrefs).toContain('https://bsky.app/profile/dragonspurr');
+    expect(hrefs).toContain('https://www.linkedin.com/in/dragonspurr');
+    expect(hrefs).toContain('https://hey.cafe/@dragonspurr');
   });
 });

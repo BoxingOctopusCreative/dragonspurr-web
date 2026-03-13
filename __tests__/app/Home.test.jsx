@@ -5,18 +5,18 @@ describe('Home page', () => {
   it('renders the main tagline', () => {
     render(<Home />);
     expect(
-      screen.getByText(/boxing octopus creative is a toronto-based digital content brand with many tentacles/i)
+      screen.getByText(/dragon's purr crafts and sundry is a toronto-based creative duo that makes things/i)
     ).toBeInTheDocument();
   });
 
   it('renders the logo image', () => {
     render(<Home />);
-    expect(screen.getByAltText('Boxing Octopus logo')).toBeInTheDocument();
+    expect(screen.getByAltText("Dragon's Purr Crafts and Sundry logo")).toBeInTheDocument();
   });
 
   it('logo has correct src', () => {
     render(<Home />);
-    const img = screen.getByRole('img', { name: /boxing octopus logo/i });
-    expect(img).toHaveAttribute('src', expect.stringContaining('Logo%20White.png'));
+    const img = screen.getByRole('img', { name: /dragon's purr crafts and sundry logo/i });
+    expect(img).toHaveAttribute('src', expect.stringContaining('square-logo-for-dark-bkgds.png'));
   });
 });

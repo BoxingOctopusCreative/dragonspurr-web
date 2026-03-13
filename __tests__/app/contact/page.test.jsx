@@ -30,32 +30,32 @@ describe('Contact page', () => {
 
   it('renders the Bluesky social image with correct alt and src', () => {
     render(<Contact />);
-    const img = screen.getByRole('img', { name: /ryan draga on bluesky/i });
+    const img = screen.getByRole('img', { name: /dragon's purr crafts and sundry on bluesky/i });
     expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute('alt', 'Ryan Draga on Bluesky');
+    expect(img).toHaveAttribute('alt', 'Dragon\'s Purr Crafts and Sundry on Bluesky');
     expect(img).toHaveAttribute('src', expect.stringContaining('Bluesky_Logo.svg'));
   });
 
   it('renders the LinkedIn social image with correct alt and src', () => {
     render(<Contact />);
-    const img = screen.getByRole('img', { name: /ryan draga on linkedin/i });
+    const img = screen.getByRole('img', { name: /dragon's purr crafts and sundry on linkedin/i });
     expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute('alt', 'Ryan Draga on LinkedIn');
+    expect(img).toHaveAttribute('alt', 'Dragon\'s Purr Crafts and Sundry on LinkedIn');
     expect(img).toHaveAttribute('src', expect.stringContaining('LinkedIn_icon.svg'));
   });
 
   it('renders the Hey.Café social image with correct alt and src', () => {
     render(<Contact />);
-    const img = screen.getByRole('img', { name: /ryan draga on hey\.café/i });
+    const img = screen.getByRole('img', { name: /dragon's purr crafts and sundry on hey\.café/i });
     expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute('alt', 'Ryan Draga on Hey.Café');
+    expect(img).toHaveAttribute('alt', 'Dragon\'s Purr Crafts and Sundry on Hey.Café');
     expect(img).toHaveAttribute('src', expect.stringContaining('heycafecdn'));
   });
 
   it('social images are wrapped in links that open in new tab', () => {
     render(<Contact />);
-    const blueskyLink = screen.getByRole('link', { name: /ryan draga on bluesky/i });
-    expect(blueskyLink).toHaveAttribute('href', 'https://bsky.app/profile/boxingoctopus.social');
+    const blueskyLink = screen.getByRole('link', { name: /dragon's purr crafts and sundry on bluesky/i });
+    expect(blueskyLink).toHaveAttribute('href', 'https://bsky.app/profile/dragonspurr');
     expect(blueskyLink).toHaveAttribute('target', '_blank');
   });
 

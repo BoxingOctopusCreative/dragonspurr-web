@@ -2,23 +2,17 @@ import { render, screen } from '@testing-library/react';
 import { Footer } from '@/components/Footer';
 
 describe('Footer', () => {
-  it('renders Boxing Octopus Creative link', () => {
+  it('renders Dragon\'s Purr Crafts and Sundry link', () => {
     render(<Footer />);
-    const links = screen.getAllByRole('link', { name: /boxing octopus creative/i });
+    const links = screen.getAllByRole('link', { name: /dragon's purr crafts and sundry/i });
     expect(links.length).toBeGreaterThanOrEqual(1);
-    expect(links[0]).toHaveAttribute('href', 'https://boxingoctop.us');
+    expect(links[0]).toHaveAttribute('href', 'https://dragonspurr.ca');
   });
 
   it('renders current year in copyright', () => {
     render(<Footer />);
     const year = new Date().getFullYear();
     expect(screen.getByText(new RegExp(`©\\s*${year}`, 'i'))).toBeInTheDocument();
-  });
-
-  it('renders "Another fine" and "Project" text', () => {
-    render(<Footer />);
-    expect(screen.getByText(/another fine/i)).toBeInTheDocument();
-    expect(screen.getByText(/project/i)).toBeInTheDocument();
   });
 
   it('Next.js and Tailwind links open in new tab', () => {
