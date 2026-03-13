@@ -15,9 +15,8 @@ describe('Footer', () => {
     expect(screen.getByText(new RegExp(`©\\s*${year}`, 'i'))).toBeInTheDocument();
   });
 
-  it('Next.js and Tailwind links open in new tab', () => {
+  it('Boxing Octopus Creative link opens in new tab', () => {
     render(<Footer />);
-    expect(screen.getByRole('link', { name: /next\.js/i })).toHaveAttribute('target', '_blank');
-    expect(screen.getByRole('link', { name: /tailwind css/i })).toHaveAttribute('target', '_blank');
+    expect(screen.getByRole('link', { name: /boxing octopus creative/i })).toHaveAttribute('target', '_blank');
   });
 });

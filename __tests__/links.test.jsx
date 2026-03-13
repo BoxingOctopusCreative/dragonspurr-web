@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import Home from '@/app/page';
@@ -104,8 +104,7 @@ describe('All expected links are present and resolve to correct targets', () => 
     const { container } = render(<Footer />);
     const hrefs = getLinkHrefs(container);
     expect(hrefs.filter((h) => h === 'https://dragonspurr.ca').length).toBe(2);
-    expect(hrefs).toContain('https://nextjs.org');
-    expect(hrefs).toContain('https://tailwindcss.com');
+    expect(hrefs.filter((h) => h === 'https://boxingoctop.us').length).toBe(1);
   });
 
   it('Brands page links resolve to expected brand URLs', () => {
