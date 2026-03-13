@@ -1,4 +1,5 @@
 import { commonClasses, asset_base_url } from "@/app/lib/constants";
+
 export default function About() {
   return (
     <div className="container mx-auto">

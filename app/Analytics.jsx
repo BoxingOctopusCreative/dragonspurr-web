@@ -3,10 +3,11 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import LogRocket from 'logrocket';
+import { envConfig } from '@/app/lib/constants';
 
 function initGA() {
-  if (typeof window === 'undefined' || !process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) return;
-  const id = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  if (typeof window === 'undefined' || !envConfig.googleAnalyticsId) return;
+  const id = envConfig.googleAnalyticsId;
   if (window.gtag) {
     window.gtag('config', id, { page_path: window.location.pathname });
     return;
@@ -23,22 +24,22 @@ export function Analytics() {
   const pathname = usePathname();
 
   useEffect(() => {
-    LogRocket.init('6mr8rr/boxing-octopus-creative');
+    LogRocket.init(envConfig.logrocketId);
   }, []);
 
   useEffect(() => {
-    if (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
+    if (envConfig.googleAnalyticsId && typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', envConfig.googleAnalyticsId, {
         page_path: pathname,
       });
     }
   }, [pathname]);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) return;
+    if (typeof window === 'undefined' || !envConfig.googleAnalyticsId) return;
     const script = document.createElement('script');
     script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${envConfig.googleAnalyticsId}`;
     document.head.appendChild(script);
     script.onload = initGA;
   }, []);

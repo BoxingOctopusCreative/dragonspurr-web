@@ -1,4 +1,5 @@
 import { logoTypes } from "@/app/lib/constants";
+
 export default function Home() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full items-center">

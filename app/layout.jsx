@@ -1,8 +1,8 @@
 import { Analytics } from './Analytics';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-import './globals.css';
 import { logoTypes, siteInfo, commonClasses } from './lib/constants';
+import './globals.css';
 
 export const viewport = {
   themeColor: '#000000',

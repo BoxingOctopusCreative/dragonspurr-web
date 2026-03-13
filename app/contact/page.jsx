@@ -3,18 +3,14 @@
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
-import { commonClasses, socialMedia, siteInfo } from "@/app/lib/constants";
-
-const SERVICE_ID = process.env.NEXT_PRIVATE_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = process.env.NEXT_PRIVATE_EMAILJS_TEMPLATE_ID;
-const USER_ID = process.env.NEXT_PRIVATE_EMAILJS_USER_ID;
+import { commonClasses, socialMedia, siteInfo, envConfig } from "@/app/lib/constants";
 
 export default function Contact() {
   const formRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!SERVICE_ID || !TEMPLATE_ID || !USER_ID) {
+    if (!envConfig.emailjs.serviceId || !envConfig.emailjs.templateId || !envConfig.emailjs.userId) {
       Swal.fire({
         icon: 'error',
         title: 'Configuration error',
@@ -22,7 +18,7 @@ export default function Contact() {
       });
       return;
     }
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, { publicKey: USER_ID }).then(
+    emailjs.sendForm(envConfig.emailjs.serviceId, envConfig.emailjs.templateId, e.target, { publicKey: envConfig.emailjs.userId }).then(
       () => {
         Swal.fire({
           icon: 'success',

@@ -8,7 +8,7 @@ To run the site locally, clone the repo and run `npm install` to install the dep
 
 ## Deployment
 
-The site is deployed to [Vercel](https://www.digitalocean.com/products/app-platform/) using a GitHub App. Pushing to the `main` branch will trigger a new deployment.
+The site is deployed to [Vercel](https://www.vercel.com/) using a GitHub App. Pushing to the `main` branch will trigger a new deployment.
 
 ## License
 
@@ -20,4 +20,4 @@ Contributions are welcome. Please open an issue or submit a pull request.
 
 ## Contact
 
-For any questions, please contact [info@boxingoctop.us](mailto:info@boxingoctop.us).
+For any questions, please contact [info@dragonspurr.ca](mailto:info@dragonspurr.ca).
