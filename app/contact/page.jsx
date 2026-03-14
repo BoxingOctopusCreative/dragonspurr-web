@@ -3,14 +3,16 @@
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
-import { commonClasses, socialMedia, siteInfo, envConfig } from "@/app/lib/constants";
+import { commonClasses, socialMedia, 
+  siteInfo, envConfig } from "@/app/lib/constants";
 
 export default function Contact() {
   const formRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!envConfig.emailjs.serviceId || !envConfig.emailjs.templateId || !envConfig.emailjs.userId) {
+    if (!envConfig.emailjs.serviceId || !envConfig.emailjs.templateId 
+      || !envConfig.emailjs.userId) {
       Swal.fire({
         icon: 'error',
         title: 'Configuration error',
@@ -18,7 +20,9 @@ export default function Contact() {
       });
       return;
     }
-    emailjs.sendForm(envConfig.emailjs.serviceId, envConfig.emailjs.templateId, e.target, { publicKey: envConfig.emailjs.userId }).then(
+    emailjs.sendForm(envConfig.emailjs.serviceId, 
+      envConfig.emailjs.templateId, e.target, { 
+        publicKey: envConfig.emailjs.userId }).then(
       () => {
         Swal.fire({
           icon: 'success',
@@ -91,6 +95,18 @@ export default function Contact() {
               type="text"
               name="from_name"
               placeholder="Your Name"
+              className={commonClasses.formInput}
+            />
+          </div>
+          <div>
+            <label htmlFor="subject" className={commonClasses.formLabel}>
+              <strong>Subject</strong>
+            </label>
+            <input
+              id="subject"
+              type="text"
+              name="subject"
+              placeholder="Enter Subject"
               className={commonClasses.formInput}
             />
           </div>
