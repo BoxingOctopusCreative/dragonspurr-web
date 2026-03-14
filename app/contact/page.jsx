@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
 import { commonClasses, socialMedia, 
-  siteInfo, envConfig } from "@/app/lib/constants";
+  siteInfo, envConfig, externalLinkAttributes } from "@/app/lib/constants";
 
 export default function Contact() {
   const formRef = useRef(null);
@@ -42,27 +42,29 @@ export default function Contact() {
 
   return (
     <div className="container mx-auto">
-      <div className={commonClasses.pageHeader}><strong>Contact</strong></div>
+      <div className={commonClasses.pageHeader}>
+        <strong>Contact</strong>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className={commonClasses.bodyText}>
           <p>
             If you have any questions, comments, or concerns, please feel free to reach out to us on social media.
             <br />
-            <a href={socialMedia.bluesky} target="_blank" rel="noreferrer">
+            <a href={socialMedia.bluesky} {...externalLinkAttributes}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg"
                 alt={`${siteInfo.name} on Bluesky`}
                 className="w-[5%] min-w-[32px] inline mr-5 grayscale contrast-200 brightness-200"
               />
             </a>
-            <a href={socialMedia.linkedin} target="_blank" rel="noreferrer">
+            <a href={socialMedia.linkedin} {...externalLinkAttributes}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg"
                 alt={`${siteInfo.name} on LinkedIn`}
                 className="w-[5%] min-w-[32px] inline mr-5 grayscale contrast-200 invert"
               />
             </a>
-            <a href={socialMedia.heycafe} target="_blank" rel="noreferrer">
+            <a href={socialMedia.heycafe} {...externalLinkAttributes}>
               <img
                 src="https://assets.heycafecdn.com/logos/svg/logo_round_transparent_purple.svg?cache=wqn4mia5vlfugr4"
                 alt={`${siteInfo.name} on Hey.Café`}
