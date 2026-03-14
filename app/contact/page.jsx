@@ -77,18 +77,6 @@ export default function Contact() {
         </div>
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="from_email" className={commonClasses.formLabel}>
-              <strong>Email address</strong>
-            </label>
-            <input
-              id="from_email"
-              type="email"
-              name="from_email"
-              placeholder="Enter email"
-              className={commonClasses.formInput}
-            />
-          </div>
-          <div>
             <label htmlFor="from_name" className={commonClasses.formLabel}>
               <strong>Your Name</strong>
             </label>
@@ -97,6 +85,18 @@ export default function Contact() {
               type="text"
               name="from_name"
               placeholder="Your Name"
+              className={commonClasses.formInput}
+            />
+          </div>
+          <div>
+            <label htmlFor="from_email" className={commonClasses.formLabel}>
+              <strong>Email Address</strong>
+            </label>
+            <input
+              id="from_email"
+              type="email"
+              name="from_email"
+              placeholder="Enter email"
               className={commonClasses.formInput}
             />
           </div>
@@ -119,7 +119,7 @@ export default function Contact() {
             <textarea
               id="message"
               name="message"
-              rows={6}
+              rows={3}
               className={commonClasses.formInput}
             />
           </div>
