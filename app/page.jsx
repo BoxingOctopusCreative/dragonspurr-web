@@ -11,7 +11,7 @@ export default function Home() {
         />
       </div>
       <div className="flex justify-end items-center font-cinzel_decorative text-[40px] leading-none mt-[100px]">
-        Welcome to Dragon's Purr Crafts and Sundry. We're a Toronto-Based Creative Duo that makes things.
+        Welcome to Dragon's Purr Crafts and Sundry. We're a Toronto-Based creative duo that makes quirky, bespoke crafts out of die-cut vinyl, paper, and various other mediums.
       </div>
     </div>
   );
