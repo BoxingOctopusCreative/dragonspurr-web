@@ -1,7 +1,6 @@
 import { Analytics } from './Analytics';
-import { Navigation } from '@/components/Navigation';
-import { Footer } from '@/components/Footer';
-import { logoTypes, siteInfo, commonClasses } from './lib/constants';
+import { LayoutSwitcher } from './LayoutSwitcher';
+import { logoTypes, siteInfo } from './lib/constants';
 import {
   Bebas_Neue,
   Cinzel_Decorative,
@@ -64,13 +63,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className="bg-black text-white min-h-screen flex flex-col">
         <Analytics />
-        <Navigation />
-        <main className={commonClasses.mainContent}>
-          <div className="w-full max-w-7xl mx-auto ">
-            {children}
-          </div>
-        </main>
-        <Footer />
+        <LayoutSwitcher>{children}</LayoutSwitcher>
       </body>
     </html>
   );

@@ -58,6 +58,16 @@ body {
   border-color: #6b7280;
 }
 
+/* Sanity Studio: fill viewport so no browser scroll */
+.studio-full-height {
+  height: 100%;
+}
+.studio-full-height > * {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
 /* Social icon tint: site red (#dc2626 / red-600) */
 .img-red-600 {
   filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
