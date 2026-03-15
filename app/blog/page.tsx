@@ -192,18 +192,27 @@ export default function Blog() {
                   )}
                   {post.author && (post.author.name || post.author.imageUrl) && (
                     <div className="flex items-center justify-center gap-3 mb-4" data-testid="post-author">
-                      {post.author.imageUrl && (
-                        <Image
-                          src={post.author.imageUrl}
-                          alt=""
-                          width={48}
-                          height={48}
-                          className="rounded-full object-cover w-12 h-12 flex-shrink-0"
-                        />
-                      )}
-                      {post.author.name && (
-                        <span className="text-lg text-gray-400">{post.author.name}</span>
-                      )}
+                      <button
+                        type="button"
+                        onClick={() => post.author?.name && setSearchQuery(post.author.name)}
+                        className="flex items-center justify-center gap-3 rounded focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-black text-left hover:opacity-90 transition-opacity"
+                        aria-label={post.author.name ? `View all posts by ${post.author.name}` : undefined}
+                      >
+                        {post.author.imageUrl && (
+                          <Image
+                            src={post.author.imageUrl}
+                            alt=""
+                            width={48}
+                            height={48}
+                            className="rounded-full object-cover w-12 h-12 flex-shrink-0"
+                          />
+                        )}
+                        {post.author.name && (
+                          <span className="text-lg text-gray-400 hover:text-red-600 transition-colors">
+                            {post.author.name}
+                          </span>
+                        )}
+                      </button>
                     </div>
                   )}
                   {post.image && (
