@@ -6,6 +6,7 @@ const BLOG_LIST_GROQ = `
     _id,
     title,
     publishedAt,
+    "author": author->{ _id, name },
     content
   }
 `;
@@ -14,6 +15,7 @@ interface BlogPostRow {
   _id: string;
   title?: string | null;
   publishedAt?: string | null;
+  author?: { _id: string; name?: string | null } | null;
   content?: unknown[] | null;
 }
 
@@ -63,20 +65,21 @@ export async function GET() {
       const title = item.title || 'Untitled';
       const link = `${blogUrl}?page=${index + 1}`;
       const pubDate = toRfc2822(item.publishedAt || null);
-      return { title, link, excerpt, pubDate, publishedAt: item.publishedAt };
+      const author = item.author?.name ?? null;
+      return { title, link, excerpt, pubDate, publishedAt: item.publishedAt, author };
     });
 
     const lastBuildDate = posts.length > 0 && posts[0].publishedAt
       ? toRfc2822(posts[0].publishedAt)
       : toRfc2822(null);
 
-    const itemsXml = posts.map(({ title, link, excerpt, pubDate }) => `
+    const itemsXml = posts.map(({ title, link, excerpt, pubDate, author }) => `
     <item>
       <title>${escapeXml(title)}</title>
       <link>${escapeXml(link)}</link>
       <description>${escapeXml(excerpt)}</description>
       <pubDate>${pubDate}</pubDate>
-      <guid isPermaLink="true">${escapeXml(link)}</guid>
+      <guid isPermaLink="true">${escapeXml(link)}</guid>${author ? `\n      <author>${escapeXml(author)}</author>` : ''}
     </item>`).join('');
 
     const rss = `<?xml version="1.0" encoding="UTF-8"?>

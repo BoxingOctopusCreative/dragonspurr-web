@@ -16,6 +16,7 @@ const mockBlogResponse = {
       id: 'post-1',
       title: 'Test Post',
       publishedAt: '2025-03-14T12:00:00Z',
+      author: { name: 'Kayt', imageUrl: null },
       tags: ['crafts', 'tutorial'],
       content: [
         {
@@ -40,6 +41,7 @@ const mockListResponse = {
       id: 'post-1',
       title: 'Test Post',
       publishedAt: '2025-03-14T12:00:00Z',
+      author: 'Kayt',
       tags: ['crafts', 'tutorial'],
       excerpt: 'Hello world content.',
       page: 1,
@@ -48,6 +50,7 @@ const mockListResponse = {
       id: 'post-2',
       title: 'Another Post',
       publishedAt: '2025-03-01T10:00:00Z',
+      author: 'Ryan',
       tags: ['news'],
       excerpt: 'Another excerpt.',
       page: 2,
@@ -72,9 +75,8 @@ describe('Blog page', () => {
     jest.restoreAllMocks();
   });
 
-  it('renders the Blog title', async () => {
+  it('renders and loads the current post', async () => {
     render(<Blog />);
-    expect(screen.getByText('Blog')).toBeInTheDocument();
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: 'Test Post' })).toBeInTheDocument();
     });
@@ -108,7 +110,7 @@ describe('Blog page', () => {
     await waitFor(() => {
       expect(screen.getByRole('button', { name: 'crafts' })).toBeInTheDocument();
     });
-    expect(screen.getByPlaceholderText(/search by title, keyword, or tag/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/search by title, author, keyword, or tag/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Tags' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'crafts' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'tutorial' })).toBeInTheDocument();

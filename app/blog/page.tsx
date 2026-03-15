@@ -10,6 +10,7 @@ interface BlogPost {
   id: string;
   title: string;
   publishedAt: string | null;
+  author: { name: string | null; imageUrl: string | null } | null;
   tags: string[];
   content: PortableTextBlock[];
   image: string | null;
@@ -28,6 +29,7 @@ interface ListPost {
   id: string;
   title: string;
   publishedAt: string | null;
+  author: string | null;
   tags: string[];
   excerpt: string;
   page: number;
@@ -89,6 +91,7 @@ export default function Blog() {
       (p) =>
         p.title.toLowerCase().includes(q) ||
         p.excerpt.toLowerCase().includes(q) ||
+        (p.author && p.author.toLowerCase().includes(q)) ||
         (p.tags && p.tags.some((t) => t.toLowerCase().includes(q)))
     );
   }, [listPosts, searchQuery]);
@@ -187,6 +190,22 @@ export default function Blog() {
                       {formatDate(post.publishedAt)}
                     </time>
                   )}
+                  {post.author && (post.author.name || post.author.imageUrl) && (
+                    <div className="flex items-center justify-center gap-3 mb-4" data-testid="post-author">
+                      {post.author.imageUrl && (
+                        <Image
+                          src={post.author.imageUrl}
+                          alt=""
+                          width={48}
+                          height={48}
+                          className="rounded-full object-cover w-12 h-12 flex-shrink-0"
+                        />
+                      )}
+                      {post.author.name && (
+                        <span className="text-lg text-gray-400">{post.author.name}</span>
+                      )}
+                    </div>
+                  )}
                   {post.image && (
                     <figure className="w-full max-w-[80%] flex-shrink-0 mb-4">
                       <Image
@@ -260,16 +279,16 @@ export default function Blog() {
               RSS feed
             </a>
             <label htmlFor="blog-search" className="sr-only">
-              Search posts by title or keyword
+              Search posts by title, author, keyword, or tag
             </label>
             <input
               id="blog-search"
               type="search"
-              placeholder="Search by title, keyword, or tag..."
+              placeholder="Search by title, author, keyword, or tag..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className={commonClasses.formInput}
-              aria-label="Search posts by title, keyword, or tag"
+              aria-label="Search posts by title, author, keyword, or tag"
             />
             {tagCloud.length > 0 && (
               <div>

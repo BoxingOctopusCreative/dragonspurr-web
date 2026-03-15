@@ -17,6 +17,13 @@ export const blogPost = {
       description: 'Date and time the post was (or will be) published.',
     },
     {
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{ type: 'contributor' }],
+      description: 'Post author. Add contributors in the Contributors section to see them here.',
+    },
+    {
       name: 'tags',
       title: 'Tags',
       type: 'array',

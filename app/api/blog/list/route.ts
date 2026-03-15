@@ -6,6 +6,7 @@ const BLOG_LIST_GROQ = `
     _id,
     title,
     publishedAt,
+    "author": author->{ _id, name },
     tags,
     content
   }
@@ -15,6 +16,7 @@ interface BlogPostRow {
   _id: string;
   title?: string | null;
   publishedAt?: string | null;
+  author?: { _id: string; name?: string | null } | null;
   tags?: string[] | null;
   content?: unknown[] | null;
 }
@@ -59,6 +61,7 @@ export async function GET(request: NextRequest) {
         id: item._id,
         title: item.title || '',
         publishedAt: item.publishedAt || null,
+        author: item.author?.name ?? null,
         tags,
         excerpt,
         page: index + 1,

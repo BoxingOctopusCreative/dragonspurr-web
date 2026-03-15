@@ -12,6 +12,7 @@ const BLOG_PAGE_GROQ = `
     _id,
     title,
     publishedAt,
+    "author": author->{ _id, name, "image": image },
     tags,
     content,
     "image": image
@@ -22,6 +23,7 @@ interface BlogPost {
   _id: string;
   title?: string | null;
   publishedAt?: string | null;
+  author?: { _id: string; name?: string | null; image?: unknown } | null;
   tags?: string[] | null;
   content?: unknown[] | null;
   image?: unknown;
@@ -52,10 +54,15 @@ export async function GET(request: NextRequest) {
             const imageObj = image && typeof image === 'object' ? image as Record<string, unknown> : null;
             const imageUrl = image ? urlFor(image) : null;
             const caption = imageObj && typeof imageObj.caption === 'string' ? imageObj.caption : '';
+            const authorImage = item.author?.image;
+            const authorImageUrl = authorImage ? urlFor(authorImage).width(96).height(96).url() : null;
             return {
                 id: item._id,
                 title: item.title || '',
                 publishedAt: item.publishedAt || null,
+                author: item.author
+                    ? { name: item.author.name ?? null, imageUrl: authorImageUrl }
+                    : null,
                 tags: item.tags && Array.isArray(item.tags) ? item.tags.filter((t): t is string => typeof t === 'string') : [],
                 content: item.content && Array.isArray(item.content) ? item.content : [],
                 image: imageUrl ? imageUrl.width(500).url() : null,
