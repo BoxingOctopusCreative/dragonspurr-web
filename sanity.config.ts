@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * This configuration is used to for the Sanity Studio that's mounted on the `/app/studio_portfolio/[[...tool]]/page.tsx` route
+ * This configuration is used for the Sanity Studio mounted at /studio
  */
 
 import { visionTool } from '@sanity/vision';
@@ -15,7 +15,7 @@ import { schema } from './sanity/schemaTypes';
 import { structure } from './sanity/structure';
 
 export default defineConfig({
-  basePath: '/studio_portfolio',
+  basePath: '/studio',
   projectId: projectId!,
   dataset: dataset!,
   schema,
