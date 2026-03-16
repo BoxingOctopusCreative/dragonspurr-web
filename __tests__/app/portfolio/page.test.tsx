@@ -1,4 +1,4 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, within } from '@testing-library/react';
 import Portfolio from '@/app/portfolio/page';
 
 describe('Portfolio page', () => {
@@ -57,9 +57,10 @@ describe('Portfolio page', () => {
     });
     const photoButton = screen.getByRole('button', { name: /view test photo/i });
     fireEvent.click(photoButton);
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
-    expect(screen.getByText('Test photo')).toBeInTheDocument();
-    expect(screen.getByText('A test description')).toBeInTheDocument();
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toBeInTheDocument();
+    expect(within(dialog).getByRole('heading', { name: 'Test photo' })).toBeInTheDocument();
+    expect(within(dialog).getByText('A test description')).toBeInTheDocument();
   });
 
   it('modal shows View project link when photo has url', async () => {

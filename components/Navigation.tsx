@@ -18,6 +18,7 @@ export function Navigation() {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
+    if (pathname == null) return false;
     if (href === '/') return pathname === '/';
     return pathname === href || pathname.startsWith(href + '/');
   };

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import Home from '@/app/page';
@@ -12,7 +12,10 @@ jest.mock('sweetalert2', () => ({ __esModule: true, default: { fire: jest.fn() }
 
 const mockFetch = (url: string) => {
   if (url.startsWith('/api/portfolio'))
-    return Promise.resolve({ ok: true, json: () => Promise.resolve({ items: [], total: 0 }) });
+    return Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve({ photos: [], page: 1, pages: 0, total: 0 }),
+    });
   return Promise.reject(new Error('unexpected fetch'));
 };
 beforeAll(() => {
@@ -86,8 +89,11 @@ describe('All links have valid hrefs', () => {
     expect(links.length).toBe(0);
   });
 
-  it('Portfolio page has no links in content', () => {
+  it('Portfolio page has no links in content', async () => {
     const { container } = render(<Portfolio />);
+    await waitFor(() => {
+      expect(container.querySelector('.animate-pulse')).toBeNull();
+    });
     const links = getAllLinks(container);
     expect(links.length).toBe(0);
   });
