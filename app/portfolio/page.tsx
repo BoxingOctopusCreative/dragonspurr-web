@@ -162,17 +162,21 @@ export default function Portfolio() {
       )}
 
       {modalPhoto && (
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- overlay: close button + Escape handle interaction
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
           onClick={closeModal}
+          onKeyDown={(e) => e.key === 'Escape' && closeModal()}
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
           aria-describedby="modal-description"
+          tabIndex={-1}
         >
           <div
             className="relative max-w-4xl w-full max-h-[90vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
+            role="presentation"
           >
             <button
               type="button"

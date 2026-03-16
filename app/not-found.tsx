@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { commonClasses, asset_base_url } from "@/app/lib/constants";
 
 export default function NotFound() {
@@ -19,7 +20,7 @@ export default function NotFound() {
         </div>
         <div className={commonClasses.bodyText}>
           Oh No, You seem to have taken a wrong turn.<br />
-          <a href="/" className="text-red-600 hover:text-red-600">Go back to the home page</a>
+          <Link href="/" className="text-red-600 hover:text-red-600">Go back to the home page</Link>
         </div>
       </div>
     </div>
