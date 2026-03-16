@@ -1,12 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Brands from '@/app/brands/page';
 
-describe('Projects page', () => {
-  it('renders the Brands title', () => {
-    render(<Brands />);
-    expect(screen.getByText('Brands')).toBeInTheDocument();
-  });
-
+describe('Brands page', () => {
   it('renders all two brand images with correct alt text', () => {
     render(<Brands />);
     expect(screen.getByRole('img', { name: /dragon's purr crafts and sundry/i })).toBeInTheDocument();

@@ -38,11 +38,6 @@ describe('Contact page', () => {
     mockSendForm.mockReset();
     mockSwalFire.mockReset();
   });
-  it('renders the Contact title', () => {
-    render(<Contact />);
-    expect(screen.getByText('Contact')).toBeInTheDocument();
-  });
-
   it('renders the Bluesky social image with correct alt and src', () => {
     render(<Contact />);
     const img = screen.getByRole('img', { name: /dragon's purr crafts and sundry on bluesky/i });

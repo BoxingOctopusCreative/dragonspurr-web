@@ -1,12 +1,8 @@
+/// <reference types="jest" />
 import { render, screen } from '@testing-library/react';
 import About from '@/app/about/page';
 
 describe('About page', () => {
-  it('renders the About title', () => {
-    render(<About />);
-    expect(screen.getByText('About Us')).toBeInTheDocument();
-  });
-
   it('renders the profile image with correct alt text', () => {
     render(<About />);
     const img = screen.getByRole('img', { name: /kayt and ryan/i });

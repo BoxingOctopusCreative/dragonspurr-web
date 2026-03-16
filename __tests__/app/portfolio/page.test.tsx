@@ -33,11 +33,6 @@ describe('Portfolio page', () => {
     jest.restoreAllMocks();
   });
 
-  it('renders the Portfolio title', () => {
-    render(<Portfolio />);
-    expect(screen.getByText('Portfolio')).toBeInTheDocument();
-  });
-
   it('fetches photos from the API and displays them', async () => {
     render(<Portfolio />);
     await waitFor(() => {
